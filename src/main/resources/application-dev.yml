@@ -1,0 +1,40 @@
+server:
+  port: ${PORT:7775}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  server:
+    port: ${ACTPORT:0}
+gateway:
+  ip: ${GATEWAY:192.168.0.10}
+spring:
+  application:
+    name: ${NAME:transaction-service}
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PWORD}
+    driver-class-name: org.mariadb.jdbc.Driver
+authorization:
+  token:
+    header:
+      name: Authorization
+      prefix: Bearer
+token:
+  secret: aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj04WnEzS0NCZWQ1UQo=
+  expiration: 864000000
+logging:
+  level:
+    web: Debug
+    sql: Trace
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
